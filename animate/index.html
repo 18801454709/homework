@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="animate.css">
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		font-size: 15px;
+	}
+	.main{
+		width: 100%;
+		height: 550px;
+		position: relative;
+	}
+	.list{
+		width: 500px;
+		height: auto;
+		margin: auto;
+		margin-top: 70px;
+
+	}
+	.list li{
+		margin-top: 30px;
+		width: 100%;
+		height: 50px;
+		border: 1px solid #ccc;
+		border-radius: 2px;
+		display: -webkit-flex;
+	}
+	.list li .name{
+		width: 140px;
+		height: 100%;
+	}
+	.list li .name p{
+		line-height: 50px;
+		text-align: center;
+		cursor: default
+	}
+	.list li .text{
+		flex: 1;
+	}
+	.list li .text input{
+		width: 95%;
+		height: 80%;
+		margin-top: 5.5px;
+		border: none;
+		outline: none;
+	}
+	.sub{
+		width: 500px;
+		height: 50px;
+		border: 1px solid #ccc;
+		background: none;
+		margin: auto;
+		margin-top: 30px;
+		display: block;
+	}
+	#btn{
+		width: 500px;
+		height: 50px;
+		border: 1px solid #ccc;
+		background: none;
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		margin: auto;
+	}
+
+</style>
+<body>
+	<div class="main">
+		<transition enter-active-class='animated flip'>
+			<ul class="list" v-if='state'>
+				<li>
+					<div class="name">
+						<p>用　户　名</p>
+					</div>
+					<div class="text">
+						<input type="text" placeholder="您的账户名和登录名" v-model='userName'>
+					</div>
+				</li>
+				<li>
+					<div class="name">
+						<p>设 置 密 码</p>
+					</div>
+					<div class="text">
+						<input type="text" placeholder="建议至少使用两种字符组合" v-model='setPas'>
+					</div>
+				</li>
+				<li>
+					<div class="name">
+						<p>确 认 密 码</p>
+					</div>
+					<div class="text">
+						<input type="text" placeholder="请两次输入密码" v-model='okPas'>
+					</div>
+				</li>
+				<li>
+					<div class="name">
+						<p>中国 0086</p>
+					</div>
+					<div class="text">
+						<input type="text" placeholder="建议使用常用手机" v-model='tel'>
+					</div>
+				</li>
+				<li>
+					<div class="name">
+						<p>验　证　码</p>
+					</div>
+					<div class="text">
+						<input type="text" placeholder="请输入验证码" v-model='telTxt'>
+					</div>
+				</li>
+				<li>
+					<div class="name">
+						<p>手机验证码</p>
+					</div>
+					<div class="text">
+						<input type="text" placeholder="请输入手机验证码" v-model='telText'>
+					</div>
+				</li>
+				<button class='sub' @click='fn1'>提交</button>
+				
+			</ul>
+		</transition>
+		<button id='btn' @click='fn' v-if='show'>下一步</button>
+	</div>
+	<script src='vue.js'></script>
+	<script>
+		new Vue({
+			el: '.main',
+			data: {
+				state: false,
+				show: true,
+				message:[],
+				userName: '',
+				setPas: '',
+				okPas: '',
+				tel: '',
+				telTxt: '',
+				telText: ''
+			},
+			methods: {
+				fn() {
+					this.state = !this.state;
+					this.show = !this.show;
+				},
+				fn1() {
+					// let input = document.getElementsByTagName('input');
+					// 	this.message=[];
+					// for(let i=0;i<input.length;i++){
+					// 	this.message.push(input[i].value)
+					// }
+					// 
+					this.message.push(this.userName+', '+this.setPas+', '+this.okPas+', '+this.tel+', '+this.telTxt+', '+this.telText)
+				console.log(this.message)
+				}
+			}
+		})
+	</script>
+</body>
+</html>
